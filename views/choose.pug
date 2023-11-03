@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  - const image_names = ['blacktea.jpg', 'coldtea.jpg', 'greentea.jpg', 'herbaltea.jpg', 'masalatea.jpg']
+  - for (let i = 0; i < 3; i++)
+    - const Index = Math.floor(Math.random() * 5)
+    img(src=`/images/${image_names[Index]}`, alt=`${image_names[Index]}`, height="300", width="300")
+
+
+  

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  -let results = [{Tea_flavour: "Black Tea",Tea_cost: 50.00,Tea_quantity: 15}, {Tea_flavour: "Green Tea",Tea_cost: 80.00,Tea_quantity: 20},{Tea_flavour: "Cold Tea",Tea_cost: 100.00,Tea_quantity: 30} ]
+    .container-fluid
+        .row
+            each tea,index in results
+                .col-sm-2(onclick = `buy(${index})`)             
+                    h3 #{tea.Tea_flavour}
+                    p Cost: $#{tea.Tea_cost}
+                    p Quantity: #{tea.Tea_quantity}ml
+  script.
+    function buy(index) {
+      alert(`you purchased item ${index}`);
+    }
+            
+    
+
+
+
+
+
+
