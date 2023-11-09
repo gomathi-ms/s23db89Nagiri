@@ -54,7 +54,7 @@ async function recreateDB(){
   // Delete everything
   await Tea.deleteMany();
     let instance1 = new Tea({Tea_flavour:"Black Tea", Tea_cost:50.00,Tea_quantity:15});
-    let instance2 = new Tea({Tea_flavour:"Green Tea", Tea_cost:80.00,Tea_quantity:20});
+    let instance2 = new Tea({Tea_flavour:"Green Ta", Tea_cost:80.00,Tea_quantity:20});
     let instance3 = new Tea({Tea_flavour:"Cold Tea", Tea_cost:100.00,Tea_quantity:30});
     instance1.save().then(doc=>{
     console.log("First object saved")}
