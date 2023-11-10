@@ -42,9 +42,28 @@ exports.Tea_create_post = async function(req, res) {
   res.send('NOT IMPLEMENTED: Tea delete DELETE ' + req.params.id);
  };
  // Handle Costume update form on PUT.
- exports.Tea_update_put = function(req, res) {
-  res.send('NOT IMPLEMENTED: Tea update PUT' + req.params.id);
- };
+ //Handle Costume update form on PUT.
+exports.Tea_update_put = async function(req, res) {
+console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+try {
+let toUpdate = await Tea.findById( req.params.id)
+// Do updates of properties
+if(req.body.Tea_flavour)
+toUpdate.Tea_flavour = req.body.Tea_flavour;
+if(req.body.Tea_cost) toUpdate.Tea_cost = req.body.Tea_cost;
+if(req.body.Tea_quantity) toUpdate.Tea_quantity = req.body.Tea_quantity;
+let result = await toUpdate.save();
+console.log("Sucess " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+}
+};
+
+
  exports.Tea_list = async function(req, res) {
   try{
   theTeas = await Tea.find();
