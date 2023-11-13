@@ -38,9 +38,9 @@ exports.Tea_create_post = async function(req, res) {
  };
  
  // Handle Costume delete form on DELETE.
- exports.Tea_delete = function(req, res) {
-  res.send('NOT IMPLEMENTED: Tea delete DELETE ' + req.params.id);
- };
+//  exports.Tea_delete = function(req, res) {
+//   res.send('NOT IMPLEMENTED: Tea delete DELETE ' + req.params.id);
+//  };
  // Handle Costume update form on PUT.
  //Handle Costume update form on PUT.
 exports.Tea_update_put = async function(req, res) {
@@ -87,4 +87,15 @@ exports.Tea_view_all_Page = async function(req, res) {
   res.send(`{"error": ${err}}`);
   }
  };
- 
+ // Handle Costume delete on DELETE.
+exports.Tea_delete = async function(req, res) {
+console.log("delete " + req.params.id)
+try {
+result = await Tea.findByIdAndDelete( req.params.id)
+console.log("Removed " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": Error deleting ${err}}`);
+}
+};
