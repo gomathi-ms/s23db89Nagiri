@@ -17,5 +17,6 @@ router.put('/Teas/:id', Tea_controller.Tea_update_put);
 router.get('/Teas/:id', Tea_controller.Tea_detail);
 // GET request for list of all Costume items.
 router.get('/Teas', Tea_controller.Tea_list);
+router.get('/detail', Tea_controller.Tea_view_one_Page);
 
 module.exports = router;

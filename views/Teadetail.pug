@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  - let Teaid = toShow._id
+  - let Tea_flavour = toShow.Tea_flavour
+  - let Tea_cost = toShow.Tea_cost
+  - let Tea_quantity = toShow.Tea_quantity
+
+  div
+    div.row
+      div(class='TeaAttr mr-3') Tea Flavour is:
+      div #{Tea_flavour}
+
+    div.row
+      div(class='TeaAttr mr-3') Tea Cost is:
+      div #{Tea_cost}
+
+    div.row
+      div(class='TeaAttr mr-3') Tea Quantity is:
+      div #{Tea_quantity}
+
+
