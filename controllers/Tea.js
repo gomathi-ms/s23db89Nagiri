@@ -132,5 +132,19 @@ exports.Tea_view_one_Page = async function(req, res) {
       res.send(`{'error': '${err}'}`);
       }
       };
+      exports.Tea_delete_Page = async function(req, res) {
+        console.log("Delete view for id " + req.query.id)
+        try{
+        result = await Tea.findById(req.query.id)
+        res.render('Teadelete', { title: 'Tea Delete', toShow:
+        result });
+        }
+        catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+        }
+        };
+        
+        
      
     
