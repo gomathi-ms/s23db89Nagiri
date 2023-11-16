@@ -121,4 +121,16 @@ exports.Tea_view_one_Page = async function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
     };
+    exports.Tea_update_Page = async function(req, res) {
+      console.log("update view for item "+req.query.id)
+      try{
+      let result = await Tea.findById(req.query.id)
+      res.render('Teaupdate', { title: 'Tea Update', toShow: result });
+      }
+      catch(err){
+      res.status(500)
+      res.send(`{'error': '${err}'}`);
+      }
+      };
+     
     
