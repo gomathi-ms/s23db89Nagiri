@@ -8,16 +8,18 @@ block content
   - let Tea_quantity = toShow.Tea_quantity
 
   div
-    div.row
-      div(class='TeaAttr mr-3') Tea Flavour is:
-      div #{Tea_flavour}
-
-    div.row
-      div(class='TeaAttr mr-3') Tea Cost is:
-      div #{Tea_cost}
-
-    div.row
-      div(class='TeaAttr mr-3') Tea Quantity is:
-      div #{Tea_quantity}
-
-
+    div.row(style='margin-bottom: 10px;')
+      div(class='TeaAttr mr-3') Tea ID is:
+      div(style='font-weight: bold;') #{Teaid}
+    
+    div.row(style='margin-bottom: 10px;')
+      div(class='TeaAttr mr-3') Tea flavour is:
+      div(style='color: green;') #{Tea_flavour}
+    
+    div.row(style='margin-bottom: 10px;')
+      div(class='TeaAttr mr-3') Tea cost is:
+      div(style='color: blue;') #{Tea_cost}
+    
+    div.row(style='margin-bottom: 10px;')
+      div(class='TeaAttr mr-3') Tea quantity is:
+      div(style='color: red;') #{Tea_quantity}
