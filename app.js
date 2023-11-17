@@ -19,7 +19,14 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once("open", function(){
 console.log("Connection to DB succeeded")});
-
+// passport config
+// Use the existing connection
+// The Account model
+var Account =require('./models/account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+ 
 var Tea = require("./models/Tea");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -76,9 +83,14 @@ async function recreateDB(){
     }
     let reseed = true;
     if (reseed) {recreateDB();}
-    
-
-  // error handler
+    app.use(require('express-session')({
+      secret: 'keyboard cat',
+      resave: false,
+      saveUninitialized: false
+     }));
+     app.use(passport.initialize());
+     app.use(passport.session());  
+ // error handler
   app.use(function(err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
@@ -88,6 +100,32 @@ async function recreateDB(){
     res.status(err.status || 500);
     res.render('error');
   });
+  passport.use(new LocalStrategy(
+    function(username, password, done) {
+    Account.findOne({ username: username })
+    .then(function (user){
+    if (err) { return done(err); }
+    if (!user) {
+    return done(null, false, { message: 'Incorrect username.' });
+    }
+    if (!user.validPassword(password)) {
+    return done(null, false, { message: 'Incorrect password.' });
+    }
+    return done(null, user);
+    })
+    .catch(function(err){
+    return done(err)
+    })
+    })
+    )
+    app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+    }));
+    app.use(passport.initialize());
+    app.use(passport.session());
+    
 
   module.exports = app;
 
