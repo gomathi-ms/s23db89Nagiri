@@ -6,10 +6,17 @@ block content
   .container-fluid
     .row
       each tea, index in items
+        - let destination = `dispatch(\"/Tea/update?id=${tea._id}\")`
         .col-sm-2(onclick=`buy(${index})`)
           h3 #{tea.Tea_flavour}
           p Cost: $#{tea.Tea_cost}
           p Quantity: #{tea.Tea_quantity}ml
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+
+  script.
+    function dispatch(path){
+    window.location.href=path
+    }
   script.
     function buy(index) {
       alert(`you purchased item ${index}`);
