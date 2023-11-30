@@ -1,19 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}, made changes on index.pug file
-  button(type="button", class="btn btn-outline-success" onclick="goFaster()") Press Me for the contents
-  br
-  br
-  div(id="faster") Increase the speed
-
-  script.
-    var mph=20
-    var change=1
-    function goFaster(){
-      mph += change;
-      change += 1;
-      document.getElementById("faster").textContent = "MPH " + mph + " with change " + change;
-      }
-  a(href="/Tea") View Search Results
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/Tea") Take me to Teas
+    br
+    a(href="/logout") Logout
