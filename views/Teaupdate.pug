@@ -20,11 +20,11 @@ block content
 
     .form-group
       label.TeaAttr(for='Tea_cost' style='font-weight: bold; color: #e74c3c;') Tea cost
-      input#Tea_cost.form-control(type='number', name='Tea_cost', value= Tea_cost )
+      input#Tea_cost.form-control(type='number', name='Tea_cost', min = 10, max = 1000, value= Tea_cost )
 
     .form-group
       label.TeaAttr(for='Tea_quantity' style='font-weight: bold; color: #2ecc71;') Tea quantity
-      input#Tea_quantity.form-control(type='number', name='Tea_quantity', value= Tea_quantity )
+      input#Tea_quantity.form-control(type='number', name='Tea_quantity', min = 1, max = 100, value= Tea_quantity )
 
     button.btn.btn-primary(type="submit" style='margin-top: 15px;') Update Tea
 

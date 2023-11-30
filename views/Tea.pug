@@ -5,13 +5,20 @@ block content
   - var items = results
   .container-fluid
     .row
+      a.btn.btn-success(href="/Tea/create") Create Tea
       each tea, index in items
-        - let destination = `dispatch(\"/Tea/update?id=${tea._id}\")`
+        - let destination1 = `dispatch(\"/Tea/update?id=${tea._id}\")`
+        - let destination2 = `dispatch(\"/Tea/detail?id=${tea._id}\")`
+        - let destination3 = `dispatch(\"/Tea/delete?id=${tea._id}\")`
         .col-sm-2(onclick=`buy(${index})`)
           h3 #{tea.Tea_flavour}
           p Cost: $#{tea.Tea_cost}
           p Quantity: #{tea.Tea_quantity}ml
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn( class="btn-primary ml-1", onclick= destination1) Update
+          button.btn( class="btn-primary ml-1", onclick= destination2) View
+          button.btn( class="btn-primary ml-1", onclick= destination3) Delete
+
+
 
   script.
     function dispatch(path){
